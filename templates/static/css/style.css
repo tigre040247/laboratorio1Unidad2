@@ -1,0 +1,6 @@
+body { margin:10px; background-image: url("../images/wall.jpg"); }
+
+canvas {
+    border:2px solid rgb(13, 128, 11);
+    background-color: #b5c4ca;
+}
