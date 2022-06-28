@@ -2,50 +2,54 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
 <style>
 canvas {
-    border:2px solid black;
-    background-color: #87ceeb;
+    border:2px solid rgb(13, 128, 11);
+    background-color: #b5c4ca;
 }
 </style>
 </head>
 <body onload="startGame()">
-<script>
+    <h1>JUEGO BLOCK HOPPER</h1>
+    
+    <script>
 
-var canvasWidth = 600;
-var canvasHeight = 400;
+        var canvasWidth = 600;
+        var canvasHeight = 400;
+        //Creación de la variable 
+        var player;
+        var playerYPosition = 200;
 
-var player;
-var playerYPosition = 200;
+        var fallSpeed = 0;
+        var interval = setInterval(updateCanvas, 20);
 
-var fallSpeed = 0;
-var interval = setInterval(updateCanvas, 20);
+        var isJumping = false;
+        var jumpSpeed = 0;
 
-var isJumping = false;
-var jumpSpeed = 0;
+        var block;
 
-var block;
+        // Crear una puntuación de 0 para empezar
+        var score = 0;
+        // Crear una variable para contener nuestro scoreLabel
+        var scoreLabel;
 
-// Create a score of 0 to start with
-var score = 0;
-// Create a variable to hold our scoreLabel
-var scoreLabel;
-
-function startGame() {
-    gameCanvas.start();
-    player = new createPlayer(30, 30, 10);
-    block = new createBlock();
-    // Assign your scoreLabel variable a value from scoreLabel()
-    scoreLabel = new createScoreLabel(10, 30);
+        function startGame() {
+            gameCanvas.start();
+            player = new createPlayer(30, 30, 10);
+            block = new createBlock();
+        // Asigne a su variable scoreLabel un valor de scoreLabel()
+        scoreLabel = new createScoreLabel(10, 30);
 }
 
-var gameCanvas = {
-    canvas: document.createElement("canvas"),
-    start: function() {
-        this.canvas.width = canvasWidth;
-        this.canvas.height = canvasHeight;
-        this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        var gameCanvas = {
+            canvas: document.createElement("canvas"),
+            start: function() {
+                this.canvas.width = canvasWidth;
+                this.canvas.height = canvasHeight;
+                this.context = this.canvas.getContext("2d");
+                document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     }
 }
 
@@ -105,7 +109,7 @@ function createBlock() {
             speed = randomNumber(4, 6);
             this.y = canvasHeight - height;
             this.x = canvasWidth;
-            // Increase your score if your block made it to the edge
+            // Aumenta tu puntuación si tu bloque llegó al borde
             score++;
         }
     }
@@ -153,7 +157,7 @@ function updateCanvas() {
     block.draw();
     block.attackPlayer();
     
-    // Redraw your score and update the value
+    // Vuelva a dibujar su puntaje y actualice el valor
     scoreLabel.text = "SCORE: " + score;
     scoreLabel.draw();
 }
@@ -176,6 +180,6 @@ document.body.onkeyup = function(e) {
 
 </script>
 <br>
-<h1>Block Hopper</h1>
+
 </body>
 </html>
